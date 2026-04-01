@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Danh Mục</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/category.css">
+</head>
+<body>
+    <header>
+        <div class="header">
+            <div class="left">📒 Tài Chính Cá Nhân K25_Rikkei</div>
+            <div class="right">
+                <span>Tài khoản</span>
+                <img src="../assets/images/arrow.png">
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="sidebar">
+            <a href="../index.html">
+                <img src="../assets/images/Vector (8).png" alt="">
+                <p>Information</p>
+            </a>
+            <a href="../pages/category.html" class="active">
+                <img src="../assets/images/Vector (11).png" alt="">
+                <p>Category</p>
+            </a>
+            <a href="../pages/history.html">
+                <img src="../assets/images/Vector (7).png" alt="">
+                <p>History</p>
+            </a>
+        </div>
+        <div class="content">
+            <section id="category" class="tab">
+                <section class="banner">
+                    <h2>🎯 Kiểm soát chi tiêu thông minh</h2>
+                    <p>Theo dõi ngân sách và thu chi hằng tháng dễ dàng</p>
+                </section>
+                <h2 class="dashboard-title">📊 Quản Lý Tài Chính Cá Nhân</h2>
+                <div class="card center">
+                    <p>Số tiền còn lại</p>
+                    <h3 class="money">0 VND</h3>
+                </div>
+                <div class="card">
+                    <label>📅 Chọn tháng:</label>
+                    <input type="month">
+                </div>
+                <div class="card">
+                    <h3>📂 Quản lý danh mục</h3>
+                    <div class="category-form">
+                        <input type="text" placeholder="Tên danh mục">
+                        <input type="number" placeholder="Giới hạn (VND)">
+                        <button class="btn-primary">Thêm danh mục</button>
+                    </div>
+                    <div class="category-grid">
+                        <div class="category-item">
+                            <div class="cat-left">
+                                <span class="icon">$</span>
+                                <div>
+                                    <p class="cat-name">Tiền tích lũy</p>
+                                    <p class="cat-money">2.000 $</p>
+                                </div>
+                            </div>
+                            <div class="cat-actions">
+                                <span class="delete">&times;</span>
+                                <span class="edit">✎</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <footer>
+        © 2026 Quản Lý Tài Chính Cá Nhân. by Nguyễn Đức Toàn!
+    </footer>
+</body>
+
+</html>

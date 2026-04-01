@@ -1,4 +1,3 @@
-/* RESET */
 * {
     margin: 0;
     padding: 0;
@@ -7,10 +6,10 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    background: #F3F4F6;
+    background: url('../assets/images/background.png') no-repeat center;
+    background-size: cover;
 }
 
-/* CENTER */
 .auth {
     height: 100vh;
     display: flex;
@@ -20,7 +19,6 @@ body {
 
 .auth-card {
     width: 448px;
-    height: 342px;
     background: #f9fafb;
     padding: 26px;
     border-radius: 12px;
@@ -34,7 +32,6 @@ body {
     margin-bottom: 18px;
 }
 
-/* INPUT */
 .form-group {
     margin-bottom: 12px;
 }
@@ -52,6 +49,10 @@ body {
     border-color: #22c55e;
     outline: none;
     box-shadow: 0 0 0 2px rgba(34,197,94,0.2);
+}
+
+.form-group input::placeholder {
+    color: #9CA3AF;
 }
 
 .btn-success {
@@ -84,4 +85,19 @@ body {
     color: #2563eb;
     text-decoration: none;
     font-weight: 500;
+}
+
+.form-group.error input {
+    border: 2px solid red;
+}
+
+.form-group .error {
+    color: red;
+    font-size: 13px;
+    margin-top: 5px;
+    display: block;
+}
+
+.form-group.error input::placeholder {
+    color: #FF0004;
 }

@@ -140,6 +140,10 @@ footer {
     margin: 10px 0;
 }
 
+.category-form input {
+    width: 260px;
+}
+
 .category-list {
     list-style: none;
 }
@@ -157,7 +161,7 @@ footer {
 }
 
 .btn-primary {
-    background: #3B82F6;
+    background: #4F46E5;
     color: white;
     border: none;
     padding: 12px 24px;
@@ -410,10 +414,13 @@ table td:last-child {
 .cat-actions {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 8px;
     cursor: pointer;
 }
 
+.cat-actions span:hover {
+    color: red;
+}
 
 @media (max-width: 1024px) {
     .banner,

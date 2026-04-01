@@ -350,7 +350,7 @@ table td:last-child {
 
 .pagination {
     display: flex;
-    justify-content: center;
+    justify-content: right;
     gap: 8px;
     margin-top: 15px;
 }
@@ -410,10 +410,13 @@ table td:last-child {
 .cat-actions {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 8px;
     cursor: pointer;
 }
 
+.cat-actions span:hover {
+    color: red;
+}
 
 @media (max-width: 1024px) {
     .banner,

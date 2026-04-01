@@ -6,7 +6,8 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    background: #F3F4F6;
+    background: url('../assets/images/background.png') no-repeat center;
+    background-size: cover;
 }
 
 .auth {
@@ -54,6 +55,10 @@ body {
     box-shadow: 0 0 0 2px rgba(87, 117, 223, 0.2);
 }
 
+.form-group input::placeholder {
+    color: #9CA3AF;
+}
+
 .btn-primary {
     width: 100%;
     padding: 11px;
@@ -77,4 +82,20 @@ body {
     color: #4f46e5;
     text-decoration: none;
     font-weight: 500;
+}
+
+.form-group.error input {
+    border: 1px solid #FF0004;
+}
+
+.form-group .error {
+    color: #FF0004;
+    font-size: 13px;
+    margin-top: 5px;
+    display: block;
+    text-align: left;
+}
+
+.form-group.error input::placeholder {
+    color: #FF0004;
 }

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lịch Sử</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/history.css">
+</head>
+
+<body>
+    <header>
+        <div class="header">
+            <div class="left">📒 Tài Chính Cá Nhân K25_Rikkei</div>
+            <div class="right">
+                <span>Tài khoản</span>
+                <img src="../assets/images/arrow.png">
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="sidebar">
+            <a href="../index.html">
+                <img src="../assets/images/Vector (8).png" alt="">
+                <p>Information</p>
+            </a>
+            <a href="../pages/category.html">
+                <img src="../assets/images/Vector (6).png" alt="">
+                <p>Category</p>
+            </a>
+            <a href="../pages/history.html" class="active">
+                <img src="../assets/images/Vector (13).png" alt="">
+                <p>History</p>
+            </a>
+        </div>
+        <div class="content">
+            <section id="history" class="tab">
+                <section class="banner">
+                    <h2>🎯 Kiểm soát chi tiêu thông minh</h2>
+                    <p>Theo dõi ngân sách và thu chi hằng tháng dễ dàng</p>
+                </section>
+                <h2 class="dashboard-title">📊 Quản Lý Tài Chính Cá Nhân</h2>
+                <div class="card center">
+                    <p>Số tiền còn lại</p>
+                    <h3 class="money">0 VND</h3>
+                </div>
+                <div class="card">
+                    <label>📅 Chọn tháng:</label>
+                    <input type="month">
+                </div>
+                <div class="card">
+                    <div class="history-form">
+                        <input type="number" placeholder="Số tiền">
+                        <select>
+                            <option value="">Danh mục chi tiêu <img src="../assets/images/Vector (14).png"></option>
+                            <option value="an-uong">Tiền ăn uống</option>
+                            <option value="di-choi">Tiền đi chơi</option>
+                            <option value="hoc-tap">Tiền học tập</option>
+                            <option value="tiet-kiem">Tiền tiết kiệm</option>
+                        </select>
+                        <input type="text" placeholder="Ghi chú">
+                        <button class="btn-primary">Thêm</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="history-header">
+                        <h3>🧾 Lịch sử giao dịch (theo tháng)</h3>
+                        <div class="history-actions">
+                            <button class="btn-sort">Sắp xếp theo giá</button>
+                            <input type="text" placeholder="tìm nội dung">
+                            <button class="btn-search"><img src="../assets/images/Vector (9).png" alt=""></button>
+                        </div>
+                    </div>
+
+                    <table>
+                        <tr>
+                            <th>STT</th>
+                            <th>Category</th>
+                            <th>Budget</th>
+                            <th>Note</th>
+                            <th>Actions</th>
+                        </tr>
+
+                        <tr>
+                            <td>1</td>
+                            <td>Tiền đi chơi</td>
+                            <td>2.000 $</td>
+                            <td>Đi chơi sapa</td>
+                            <td><img src="../assets/images/Trash.png" alt=""></td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>Tiền đi học</td>
+                            <td>1.500 $</td>
+                            <td>Học online</td>
+                            <td><img src="../assets/images/Trash.png" alt=""></td>
+                        </tr>
+                    </table>
+                    <div class="pagination">
+                        <button>←</button>
+                        <button>1</button>
+                        <button>2</button>
+                        <button class="active">3</button>
+                        <button>4</button>
+                        <button>5</button>
+                        <button>6</button>
+                        <button>7</button>
+                        <button>→</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <footer>
+        © 2026 Quản Lý Tài Chính Cá Nhân. by Nguyễn Đức Toàn!
+    </footer>
+</body>
+</html>
