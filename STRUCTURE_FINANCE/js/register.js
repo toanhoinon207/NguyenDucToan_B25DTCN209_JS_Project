@@ -1,3 +1,8 @@
+let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+if(currentUser){
+    window.location.href = "../index.html";
+}  
+
 const form = document.querySelector(".auth-form");
 const emailEl = document.getElementById('email');
 const passEl = document.getElementById('password');
@@ -9,13 +14,25 @@ let users = JSON.parse(localStorage.getItem("users")) || [];
 
 function showError(group, warning) {
     group.classList.add("error");
-    group.querySelector(".error").innerText = warning;
+    group.querySelector("small").innerText = warning;
 }
 
 function clearError(group) {
     group.classList.remove("error");
-    group.querySelector(".error").innerText = "";
+    group.querySelector("small").innerText = "";
 }
+
+emailInput.addEventListener("click", () => {
+    clearError(emailEl);
+});
+
+passInput.addEventListener("click", () => {
+    clearError(passEl);
+});
+
+rePassInput.addEventListener("click", () => {
+    clearError(rePassEl);
+});
 
 function isEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -63,11 +80,13 @@ function accountRegister() {
             id: users.length > 0 ? users[users.length - 1].id + 1 : 1,
             email: email,
             password: password,
+            phone: "",
+            gender: "",
             status: true
         };
         users.push(newUser);
         localStorage.setItem("users", JSON.stringify(users));
-        alert("Đăng ký thành công!");
+        document.querySelector(".success").style.display = "block";
         window.location.href = "./login.html";
     }
 }

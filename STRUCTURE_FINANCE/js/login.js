@@ -1,3 +1,8 @@
+let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+if(currentUser){
+    window.location.href = "../index.html";
+}  
+
 const form = document.querySelector(".auth-form");
 const emailEl = document.getElementById("email");
 const passEl = document.getElementById("password");
@@ -6,13 +11,21 @@ const passInput = passEl.querySelector("input");
 let users = JSON.parse(localStorage.getItem("users")) || [];
 function showError(group, warning) {
     group.classList.add("error");
-    group.querySelector(".error").innerText = warning;
+    group.querySelector("small").innerText = warning;
 }
 
 function clearError(group) {
     group.classList.remove("error");
-    group.querySelector(".error").innerText = "";
+    group.querySelector("small").innerText = "";
 }
+
+emailInput.addEventListener("click", () => {
+    clearError(emailEl);
+});
+
+passInput.addEventListener("click", () => {
+    clearError(passEl);
+});
 
 function accountLogin() {
     let isValidation = true;
@@ -40,6 +53,6 @@ function accountLogin() {
         return;
     }
     localStorage.setItem("currentUser", JSON.stringify(user));
-    alert("Đăng nhập thành công!");
+    document.querySelector(".success").style.display = "block";
     window.location.href = "../index.html";
 }

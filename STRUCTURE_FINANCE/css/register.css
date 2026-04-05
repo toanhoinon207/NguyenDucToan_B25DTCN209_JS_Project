@@ -32,6 +32,13 @@ body {
     margin-bottom: 18px;
 }
 
+.success {
+    display: none;
+    color: #24A600;
+    font-size: 16px;
+    text-align: center;
+}
+
 .form-group {
     margin-bottom: 12px;
 }

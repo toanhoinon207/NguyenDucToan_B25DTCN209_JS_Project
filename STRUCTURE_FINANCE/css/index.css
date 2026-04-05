@@ -30,14 +30,14 @@ body {
     font-size: 14px;
     font-weight: 400;
     line-height: 20px;
-    gap: 5px;
+    align-items: center;
+    gap: 8px;
 }
 
-.right img {
-    width: 21px;
-    height: 20px;
-    padding: 6px 4px;
-    cursor: pointer;
+.right select{
+    background: #4338CA;
+    border: 1px solid #4338CA;
+    color: #ffffff;
 }
 
 .banner {
@@ -414,6 +414,110 @@ table td:last-child {
     cursor: pointer;
 }
 
+.warning {
+    color: orange;
+    display:none;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.popup {
+    position: fixed;
+    inset: 0;
+    background: rgba(30, 41, 59, 0.6); /* nền tối giống ảnh */
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.modal {
+    width: 480px;
+    background: #f9fafb;
+    border-radius: 10px;
+    padding: 20px 24px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+    animation: fadeIn 0.25s ease;
+}
+
+.modal-header {
+    margin-bottom: 10px;
+}
+
+.modal-header img{
+    width: 62px;
+    height: 60px;
+}
+
+.modal-body h3 {
+    font-size: 18px;
+    margin-bottom: 6px;
+    color: #111827;
+}
+
+.modal-body p {
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 20px;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 15px;
+}
+
+.btn {
+    padding: 8px 18px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.cancel {
+    background: #ffffff;
+    color: #344054;
+    border: 1px solid #D0D5DD;
+    width: 62px;
+    height: 48px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.051);
+}
+
+.cancel:hover {
+    background-color: #b1b4bb;
+}
+
+.confirm {
+    background: #f59e0b;
+    color: white;
+    width: 62px;
+    height: 48px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.051);
+}
+
+.confirm:hover {
+    background: #d97706;
+}
+
+@keyframes fadeIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
 
 @media (max-width: 1024px) {
     .banner,

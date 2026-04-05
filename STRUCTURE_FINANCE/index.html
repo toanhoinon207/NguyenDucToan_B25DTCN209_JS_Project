@@ -14,23 +14,40 @@
         <div class="header">
             <div class="left">📒 Tài Chính Cá Nhân K25_Rikkei</div>
             <div class="right">
-                <span>Tài khoản</span>
-                <img src="./assets/images/arrow.png">
+                <select id="menu" onchange="logOut()">
+                    <option value="">Tài khoản</option>
+                    <option value="logout">Đăng xuất</option>
+                </select>
             </div>
         </div>
     </header>
+    <div class="popup" id="popup">
+        <div class="modal">
+            <div class="modal-header">
+                <img src="./assets/images/image.png" alt="">
+            </div>
+            <div class="modal-body">
+                <h3>Xác nhận</h3>
+                <p>Bạn có chắc chắn muốn đăng xuất khỏi hệ thống không?</p>
+            </div>
+            <div class="modal-footer">
+                <button id="cancel-btn" class="btn cancel">Hủy</button>
+                <button id="confirm-btn" class="btn confirm">Có</button>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <div class="sidebar">
-            <a href="../index.html" class="active">
-                <img src="../assets/images/Vector (12).png" alt="">
+            <a href="./index.html" class="active">
+                <img src="./assets/images/Vector (12).png" alt="">
                 <p class="text">Information</p>
             </a>
-            <a href="../pages/category.html">
-                <img src="../assets/images/Vector (6).png" alt="">
+            <a href="./pages/category.html">
+                <img src="./assets/images/Vector (6).png" alt="">
                 <p>Category</p>
             </a>
-            <a href="../pages/history.html">
-                <img src="../assets/images/Vector (7).png" alt="">
+            <a href="./pages/history.html">
+                <img src="./assets/images/Vector (7).png" alt="">
                 <p>History</p>
             </a>
         </div>
@@ -43,16 +60,22 @@
                 <h2 class="dashboard-title">📊 Quản Lý Tài Chính Cá Nhân</h2>
                 <div class="card center">
                     <p>Số tiền còn lại</p>
-                    <h3 class="money">0 VND</h3>
+                    <h3 class="money" id="remain">0 VND</h3>
                 </div>
                 <div class="card">
                     <label>📅 Chọn tháng:</label>
-                    <input type="month">
+                    <input type="month" id="monthChoose">
                 </div>
                 <div class="card">
                     <label>💰 Ngân sách tháng:</label>
-                    <input type="number" placeholder="VD: 5000000">
-                    <button class="btn-primary">Lưu</button>
+                    <input type="number" id="budgetInput" placeholder="VD: 5000000">
+                    <button class="btn-primary" id="saveBudget" onclick="saveData()">Lưu</button>
+                </div>
+                <div class="card">
+                    <p>📌 Ngân sách đã đặt: <strong id="budgetShow">0 VND</strong></p>
+                    <p>💸 Đã chi: <strong id="spendShow">0 VND</strong></p>
+                    <p>💰 Còn lại: <strong id="remainShow">0 VND</strong></p>
+                    <p id="warning" class="warning">⚠️ Bạn chưa đặt ngân sách cho tháng này</p>
                 </div>
                 <div class="profile-card">
                     <h3 class="profile-title">Quản Lý Thông tin cá nhân</h3>
