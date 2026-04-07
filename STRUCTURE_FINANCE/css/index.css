@@ -134,6 +134,17 @@ footer {
     font-weight: 400;
 }
 
+.spent-summary {
+    margin-top: 10px;
+    color: #6B7280;
+    font-size: 15px;
+}
+
+.spent-summary span {
+    color: #EF4444;
+    font-weight: 500;
+}
+
 .category-form {
     display: flex;
     gap: 10px;
@@ -259,6 +270,7 @@ th, td {
     font-size: 13px;
     margin-bottom: 5px;
     color: #6B7280;
+    display: flex;
 }
 
 .profile-actions {
@@ -424,7 +436,7 @@ table td:last-child {
 .popup {
     position: fixed;
     inset: 0;
-    background: rgba(30, 41, 59, 0.6); /* nền tối giống ảnh */
+    background: rgba(30, 41, 59, 0.6);
     display: none;
     justify-content: center;
     align-items: center;
@@ -508,15 +520,108 @@ table td:last-child {
     background: #d97706;
 }
 
-@keyframes fadeIn {
-    from {
-        transform: scale(0.9);
-        opacity: 0;
-    }
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
+.popup-edit {
+    position: fixed;
+    inset: 0;
+    background: rgba(17, 24, 39, 0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-edit {
+    width: 700px;
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    animation: fadeIn 0.25s ease;
+}
+
+.modal-edit-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.modal-edit-header h3 {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.modal-edit-header span {
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.modal-edit-body .form-group {
+    margin-bottom: 12px;
+}
+
+.modal-edit-body label {
+    font-size: 14px;
+    color: #344054;
+    margin-bottom: 4px;
+    display: flex;
+}
+
+.star {
+    color: #ff0000;
+    margin-left: 5px;
+}
+
+.modal-edit-body input,
+.modal-edit-body select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.modal-edit-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.btn-edit-cancel {
+    background: #fff;
+    border: 1px solid #D1D5DB;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
+.btn-edit-save {
+    background: #4F46E5;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
+.btn-edit-save:hover {
+    background: #4338CA;
+}
+
+.form-group.error input,
+.form-group.error select {
+    border: 1px solid #FF0004;
+}
+
+.form-group .error {
+    color: #FF0004;
+    font-size: 13px;
+    margin-top: 5px;
+    display: block;
+    text-align: left;
 }
 
 @media (max-width: 1024px) {

@@ -3,7 +3,6 @@ if (!currentUser) {
     window.location.href = "../pages/login.html";
 }
 
-const users = JSON.parse(localStorage.getItem("users")) || [];
 const menu = document.getElementById("menu");
 const logoutPopup = document.getElementById("popup");
 const confirmBtn = document.getElementById("confirm-btn");
@@ -29,15 +28,46 @@ function getCategoriesKey() {
     return `categories_${currentUser.id}`;
 }
 
+function getTransactionsKey(month) {
+    return `transactions_${currentUser.id}_${month}`;
+}
+
+function updateCategoryInTransactions(oldCategoryName, newCategoryName, currentMonth) {
+    const transactionsKey = getTransactionsKey(currentMonth);
+    const transactions = JSON.parse(localStorage.getItem(transactionsKey)) || [];
+
+    let updated = false;
+    transactions.forEach(transaction => {
+        if (transaction.category === oldCategoryName) {
+            transaction.category = newCategoryName;
+            updated = true;
+        }
+    });
+
+    if (updated) {
+        localStorage.setItem(transactionsKey, JSON.stringify(transactions));
+    }
+}
+
 let userCategories = JSON.parse(localStorage.getItem(getCategoriesKey())) || {};
 const month = document.getElementById("monthChoose");
 const remainMoney = document.getElementById("remain");
+const spentMoney = document.getElementById("spent");
 const warning = document.getElementById("warning");
 const today = new Date();
-month.value = today.toISOString().slice(0, 7);
+
+function getSavedMonth() {
+    return localStorage.getItem(`selectedMonth_${currentUser.id}`) || today.toISOString().slice(0, 7);
+}
+
+function saveSelectedMonth(monthValue) {
+    localStorage.setItem(`selectedMonth_${currentUser.id}`, monthValue);
+}
+
+month.value = getSavedMonth();
 
 function formatMoney(num) {
-    if (typeof num !== "number") return "0 VND";
+    if (!Number.isFinite(num)) return "0 VND";
     return num.toLocaleString("vi-VN") + " VND";
 }
 
@@ -48,23 +78,27 @@ function getKey(month) {
 function loadData() {
     const monthChoice = month.value;
     const data = JSON.parse(localStorage.getItem(getKey(monthChoice)));
-    if (!data) {
+    const budget = Number(data?.budget) || 0;
+    const spend = Number(data?.spend) || 0;
+
+    if (!data || budget <= 0) {
         warning.style.display = "block";
-        remainMoney.innerText = "0 VND";
-        return;
+    } else {
+        warning.style.display = "none";
     }
-    warning.style.display = "none";
-    const budget = data.budget || 0;
-    const spend = data.spend || 0;
-    const remain = budget - spend;
-    remainMoney.innerText = formatMoney(remain);
+
+    remainMoney.innerText = formatMoney(budget - spend);
+    spentMoney.innerText = formatMoney(spend);
     renderCategories();
 }
 
-month.onchange = loadData;
+month.onchange = function () {
+    saveSelectedMonth(month.value);
+    loadData();
+};
+
 loadData();
 
-const nameInput = document.getElementById("categoryName");
 const limitInput = document.getElementById("categoryLimit");
 const typeSelect = document.getElementById("categoryType");
 
@@ -87,27 +121,25 @@ function addCategory() {
         userCategories[currentMonth] = [];
     }
     const monthCategories = userCategories[currentMonth];
-    const isDuplicateName = monthCategories.some(cat => cat.name === selectedType);
-    if (isDuplicateName) {
-        alert("Tên category này đã tồn tại trong tháng này!");
-        return;
+    const existingCategory = monthCategories.find(cat => cat.name === selectedType);
+    if (existingCategory) {
+        existingCategory.limit += limit;
+    } else {
+        const newCategory = {
+            id: Date.now(),
+            userId: currentUser.id,
+            month: currentMonth,
+            name: selectedType,
+            limit: limit
+        };
+        monthCategories.push(newCategory);
     }
-
-    const newCategory = {
-        id: Date.now(),
-        userId: currentUser.id,
-        month: currentMonth,
-        name: selectedType,
-        limit: limit
-    };
-    monthCategories.push(newCategory);
     userCategories[currentMonth] = monthCategories;
     localStorage.setItem(getCategoriesKey(), JSON.stringify(userCategories));
 
     renderCategories();
     typeSelect.value = "";
     limitInput.value = "";
-    alert("Category đã được tạo thành công!");
 }
 
 function renderCategories() {
@@ -116,7 +148,7 @@ function renderCategories() {
     const currentMonth = month.value;
     const monthCategories = userCategories[currentMonth] || [];
     if (monthCategories.length === 0) {
-        grid.innerHTML = "<p style='grid-column: 1/-1; text-align: center; padding: 20px; color: #999;'>Bạn chưa có category nào cho tháng này. Hãy tạo một category!</p>";
+        grid.innerHTML = "<p style='grid-column: 1/-1; text-align: center; padding: 20px; color: #999;'>Bạn chưa có danh mục nào cho tháng này!</p>";
         return;
     }
     monthCategories.forEach((cat, index) => {
@@ -141,8 +173,26 @@ function renderCategories() {
 function deleteCategory(index) {
     const currentMonth = month.value;
     const monthCategories = userCategories[currentMonth] || [];
-
-    if (confirm("Bạn có chắc chắn muốn xóa category này? Hành động này không thể hoàn tác.")) {
+    const categoryToDelete = monthCategories[index];
+    if (confirm(`Bạn có chắc chắn muốn xóa category "${categoryToDelete.name}"?`)) {
+        const transactionsKey = getTransactionsKey(currentMonth);
+        const transactions = JSON.parse(localStorage.getItem(transactionsKey)) || [];
+        const categoryTransactions = transactions.filter(t => t.category === categoryToDelete.name);
+        let deleteHistory = false;
+        if (categoryTransactions.length > 0) {
+            deleteHistory = confirm(`Category "${categoryToDelete.name}" có ${categoryTransactions.length} giao dịch. Bạn có muốn xóa tất cả lịch sử giao dịch của category này không?`);
+        }
+        if (deleteHistory) {
+            const filteredTransactions = transactions.filter(t => t.category !== categoryToDelete.name);
+            localStorage.setItem(transactionsKey, JSON.stringify(filteredTransactions));
+        } else {
+            transactions.forEach(transaction => {
+                if (transaction.category === categoryToDelete.name) {
+                    transaction.category = "-";
+                }
+            });
+            localStorage.setItem(transactionsKey, JSON.stringify(transactions));
+        }
         monthCategories.splice(index, 1);
         if (monthCategories.length === 0) {
             delete userCategories[currentMonth];
@@ -151,7 +201,6 @@ function deleteCategory(index) {
         }
         localStorage.setItem(getCategoriesKey(), JSON.stringify(userCategories));
         renderCategories();
-        alert("Category đã được xóa!");
     }
 }
 
@@ -194,12 +243,15 @@ function saveEditCategory() {
         alert("Không tìm thấy category để cập nhật!");
         return;
     }
-    if (newName !== monthCategories[editingIndex].name) {
+    const oldCategoryName = monthCategories[editingIndex].name;
+    if (newName !== oldCategoryName) {
         const isDuplicateName = monthCategories.some((cat, index) => cat.name === newName && index !== editingIndex);
         if (isDuplicateName) {
             alert("Tên category này đã tồn tại trong tháng này!");
             return;
         }
+        // Update category name in all transactions for this month
+        updateCategoryInTransactions(oldCategoryName, newName, currentMonth);
     }
     monthCategories[editingIndex] = {
         ...monthCategories[editingIndex],
@@ -210,7 +262,6 @@ function saveEditCategory() {
     localStorage.setItem(getCategoriesKey(), JSON.stringify(userCategories));
     closeEditModal();
     renderCategories();
-    alert("Category đã được cập nhật thành công!");
 }
 
 document.getElementById("cancelEditBtn").addEventListener("click", closeEditModal);

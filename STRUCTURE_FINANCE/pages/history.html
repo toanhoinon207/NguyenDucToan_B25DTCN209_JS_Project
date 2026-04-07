@@ -60,66 +60,54 @@
                 <h2 class="dashboard-title">📊 Quản Lý Tài Chính Cá Nhân</h2>
                 <div class="card center">
                     <p>Số tiền còn lại</p>
-                    <h3 class="money">0 VND</h3>
+                    <h3 class="money" id="remain">0 VND</h3>
+                    <p class="spent-summary">Số tiền đã chi: <span id="spent">0 VND</span></p>
+                    <p class="transaction-count">Tổng giao dịch: <span id="transactionCount">0</span></p>
                 </div>
                 <div class="card">
                     <label>📅 Chọn tháng:</label>
-                    <input type="month">
+                    <input type="month" id="monthChoose">
+                    <p id="warning" class="warning">⚠️ Bạn chưa đặt ngân sách cho tháng này</p>
                 </div>
                 <div class="card">
                     <div class="history-form">
-                        <input type="number" placeholder="Số tiền">
-                        <select>
-                            <option value="">Danh mục chi tiêu <img src="../assets/images/Vector (14).png"></option>
-                            <option value="an-uong">Tiền ăn uống</option>
-                            <option value="di-choi">Tiền đi chơi</option>
-                            <option value="hoc-tap">Tiền học tập</option>
-                            <option value="tiet-kiem">Tiền tiết kiệm</option>
-                        </select>
-                        <input type="text" placeholder="Ghi chú">
-                        <button class="btn-primary">Thêm</button>
+                        <input type="number" id="transactionAmount" placeholder="Số tiền">
+                        <select id="transactionCategory"></select>
+                        <input type="text" id="transactionNote" placeholder="Ghi chú">
+                        <button class="btn-primary" onclick="addTransaction()">Thêm</button>
                     </div>
                 </div>
                 <div class="card">
                     <div class="history-header">
                         <h3>🧾 Lịch sử giao dịch (theo tháng)</h3>
                         <div class="history-actions">
-                            <button class="btn-sort">Sắp xếp theo giá</button>
-                            <input type="text" placeholder="tìm nội dung">
+                            <button class="btn-sort" onclick="sortByAmount()">Sắp xếp theo giá</button>
+                            <input type="text" id="searchInput" placeholder="Tìm nội dung" onkeyup="searchTransactions()">
                             <button class="btn-search"><img src="../assets/images/Vector (9).png" alt=""></button>
                         </div>
                     </div>
-
-                    <table>
-                        <tr>
-                            <th>STT</th>
-                            <th>Category</th>
-                            <th>Budget</th>
-                            <th>Note</th>
-                            <th>Actions</th>
-                        </tr>
-
-                        <tr>
-                            <td>1</td>
-                            <td>Tiền đi chơi</td>
-                            <td>2.000 $</td>
-                            <td>Đi chơi sapa</td>
-                            <td><img src="../assets/images/Trash.png" alt=""></td>
-                        </tr>
-
-                        <tr>
-                            <td>2</td>
-                            <td>Tiền đi học</td>
-                            <td>1.500 $</td>
-                            <td>Học online</td>
-                            <td><img src="../assets/images/Trash.png" alt=""></td>
-                        </tr>
+                    <table id="transactionTable">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Category</th>
+                                <th>Số tiền</th>
+                                <th>Ghi chú</th>
+                                <th>Ngày</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactionBody"></tbody>
                     </table>
+                    
+                    <div class="no-data" id="noDataMessage" style="display: none;">
+                        <p>Không có giao dịch nào trong tháng này.</p>
+                    </div>
                     <div class="pagination">
                         <button>←</button>
                         <button>1</button>
                         <button>2</button>
-                        <button class="active">3</button>
+                        <button>3</button>
                         <button>4</button>
                         <button>5</button>
                         <button>6</button>
@@ -133,6 +121,7 @@
     <footer>
         © 2026 Quản Lý Tài Chính Cá Nhân. by Nguyễn Đức Toàn!
     </footer>
+    <div id="toast" class="toast"></div>
 </body>
 <script src="../js/history.js"></script>
 

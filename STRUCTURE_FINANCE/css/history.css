@@ -33,7 +33,7 @@ body {
     gap: 5px;
 }
 
-.right select{
+.right select {
     background: #4338CA;
     border: 1px solid #4338CA;
     color: #ffffff;
@@ -93,7 +93,7 @@ footer {
     border-radius: 12px;
     text-align: center;
     width: 768px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
 .card label {
@@ -101,6 +101,35 @@ footer {
     color: #6B7280;
     font-weight: 400;
     font-size: 13px;
+}
+
+.money {
+    color: #22C55E;
+    margin-top: 8px;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.spent-summary {
+    color: #EF4444;
+    margin-top: 8px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.spent-summary span {
+    font-weight: 600;
+}
+
+.transaction-count {
+    color: #6B7280;
+    margin-top: 4px;
+    font-size: 14px;
+}
+
+.transaction-count span {
+    font-weight: 600;
+    color: #4F46E5;
 }
 
 .card input {
@@ -131,6 +160,17 @@ footer {
     margin-top: 8px;
     font-size: 24px;
     font-weight: 400;
+}
+
+.spent-summary {
+    margin-top: 10px;
+    color: #6B7280;
+    font-size: 15px;
+}
+
+.spent-summary span {
+    color: #EF4444;
+    font-weight: 500;
 }
 
 .category-form {
@@ -219,7 +259,8 @@ table {
     border-collapse: collapse;
 }
 
-th, td {
+th,
+td {
     padding: 10px;
     border-bottom: 1px solid #ddd;
     text-align: center;
@@ -316,9 +357,6 @@ th, td {
     color: #212529;
     font-size: 16px;
     font-weight: 400;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
 }
 
 .history-actions {
@@ -365,6 +403,95 @@ table td:last-child {
 .pagination button.active {
     background: #4338CA;
     color: white;
+}
+
+.no-data {
+    padding: 24px 0;
+    text-align: center;
+    color: #6B7280;
+}
+
+.delete-btn {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.delete-btn img {
+    width: 18px;
+    height: 18px;
+}
+
+.no-data {
+    text-align: center;
+    padding: 40px 20px;
+    color: #6B7280;
+    font-size: 16px;
+}
+
+.no-data p {
+    margin: 0;
+    font-style: italic;
+}
+
+.transaction-row:hover {
+    background-color: #F9FAFB;
+}
+
+.transaction-row td {
+    vertical-align: middle;
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.delete-btn:hover {
+    background-color: #FEE2E2;
+}
+
+.delete-btn img {
+    width: 16px;
+    height: 16px;
+}
+
+#pageNumbers {
+    display: flex;
+    gap: 4px;
+}
+
+#pageNumbers button {
+    min-width: 32px;
+}
+
+@media (max-width: 768px) {
+    .history-form {
+        flex-direction: column;
+    }
+
+    .history-header {
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+    }
+
+    .history-actions {
+        justify-content: space-between;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    th,
+    td {
+        padding: 8px 4px;
+    }
 }
 
 .category-grid {
@@ -420,7 +547,7 @@ table td:last-child {
 .popup {
     position: fixed;
     inset: 0;
-    background: rgba(30, 41, 59, 0.6); /* nền tối giống ảnh */
+    background: rgba(30, 41, 59, 0.6);
     display: none;
     justify-content: center;
     align-items: center;
@@ -432,7 +559,7 @@ table td:last-child {
     background: #f9fafb;
     border-radius: 10px;
     padding: 20px 24px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
     animation: fadeIn 0.25s ease;
 }
 
@@ -440,7 +567,7 @@ table td:last-child {
     margin-bottom: 10px;
 }
 
-.modal-header img{
+.modal-header img {
     width: 62px;
     height: 60px;
 }
@@ -500,11 +627,39 @@ table td:last-child {
     box-shadow: 0 1px 2px rgba(16, 24, 40, 0.051);
 }
 
+.warning {
+    color: orange;
+    display: none;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
 .confirm:hover {
     background: #d97706;
 }
 
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #ef4444;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 @media (max-width: 1024px) {
+
     .banner,
     .card,
     .profile-card {

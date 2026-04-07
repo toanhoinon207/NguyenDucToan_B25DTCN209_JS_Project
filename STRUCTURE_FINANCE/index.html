@@ -36,11 +36,77 @@
             </div>
         </div>
     </div>
+    <div class="popup-edit" id="editPopup">
+        <div class="modal-edit">
+            <div class="modal-edit-header">
+                <h3>Change Information</h3>
+                <span id="closeEdit">&times;</span>
+            </div>
+            <div class="modal-edit-body">
+                <div class="form-group">
+                    <label>Name <p class="star">*</p></label>
+                    <input type="text" id="editName">
+                    <small class="error" id="editNameError"></small>
+                </div>
+                <div class="form-group">
+                    <label>Email <p class="star">*</p></label>
+                    <input type="email" id="editEmail">
+                    <small class="error" id="editEmailError"></small>
+                </div>
+                <div class="form-group">
+                    <label>Phone <p class="star">*</p></label>
+                    <input type="text" id="editPhone">
+                    <small class="error" id="editPhoneError"></small>
+                </div>
+                <div class="form-group">
+                    <label>Gender <p class="star">*</p></label>
+                    <select id="editGender">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                    <small class="error" id="editGenderError"></small>
+                </div>
+            </div>
+            <div class="modal-edit-footer">
+                <button id="cancelEdit" class="btn-edit-cancel">Cancel</button>
+                <button id="saveEdit" class="btn-edit-save">Save</button>
+            </div>
+        </div>
+    </div>
+    <div class="popup-edit" id="passwordPopup">
+        <div class="modal-edit">
+            <div class="modal-edit-header">
+                <h3>Change Password</h3>
+                <span id="closePassword">&times;</span>
+            </div>
+            <div class="modal-edit-body">
+                <div class="form-group">
+                    <label>Old Password <p class="star">*</p></label>
+                    <input type="password" id="oldPassword">
+                    <small class="error" id="oldPassError"></small>
+                </div>
+                <div class="form-group">
+                    <label>New Password <p class="star">*</p></label>
+                    <input type="password" id="newPassword">
+                    <small class="error" id="newPassError"></small>
+                </div>
+                <div class="form-group">
+                    <label>Confirm New Password <p class="star">*</p></label>
+                    <input type="password" id="confirmPassword">
+                    <small class="error" id="confirmPassError"></small>
+                </div>
+            </div>
+            <div class="modal-edit-footer">
+                <button id="cancelPassword" class="btn-edit-cancel">Cancel</button>
+                <button id="savePassword" class="btn-edit-save">Save</button>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <div class="sidebar">
             <a href="./index.html" class="active">
                 <img src="./assets/images/Vector (12).png" alt="">
-                <p class="text">Information</p>
+                <p>Information</p>
             </a>
             <a href="./pages/category.html">
                 <img src="./assets/images/Vector (6).png" alt="">
@@ -61,6 +127,7 @@
                 <div class="card center">
                     <p>Số tiền còn lại</p>
                     <h3 class="money" id="remain">0 VND</h3>
+                    <p class="spent-summary">Số tiền đã chi: <span id="spent">0 VND</span></p>
                 </div>
                 <div class="card">
                     <label>📅 Chọn tháng:</label>
@@ -70,36 +137,31 @@
                     <label>💰 Ngân sách tháng:</label>
                     <input type="number" id="budgetInput" placeholder="VD: 5000000">
                     <button class="btn-primary" id="saveBudget" onclick="saveData()">Lưu</button>
-                </div>
-                <div class="card">
-                    <p>📌 Ngân sách đã đặt: <strong id="budgetShow">0 VND</strong></p>
-                    <p>💸 Đã chi: <strong id="spendShow">0 VND</strong></p>
-                    <p>💰 Còn lại: <strong id="remainShow">0 VND</strong></p>
                     <p id="warning" class="warning">⚠️ Bạn chưa đặt ngân sách cho tháng này</p>
                 </div>
                 <div class="profile-card">
                     <h3 class="profile-title">Quản Lý Thông tin cá nhân</h3>
                     <div class="profile-form">
                         <div class="form-group">
-                            <label>Name *</label>
-                            <input type="text" value="Nguyen Van A">
+                            <label>Name <p class="star">*</p></label>
+                            <input type="text" id="profileName">
                         </div>
                         <div class="form-group">
-                            <label>Email *</label>
-                            <input type="email" value="nguyenvana@gmail.com">
+                            <label>Email <p class="star">*</p></label>
+                            <input type="email" id="profileEmail">
                         </div>
                         <div class="form-group">
-                            <label>Phone *</label>
-                            <input type="text" value="0987654321">
+                            <label>Phone <p class="star">*</p></label>
+                            <input type="text" id="profilePhone">
                         </div>
                         <div class="form-group">
-                            <label>Gender *</label>
-                            <input type="text" value="Male">
+                            <label>Gender <p class="star">*</p></label>
+                            <input type="text" id="profileGender">
                         </div>
                     </div>
                     <div class="profile-actions">
-                        <button class="btn-outline">Change Information</button>
-                        <button class="btn-outline">Change Password</button>
+                        <button class="btn-outline" id="openEdit">Change Information</button>
+                        <button class="btn-outline" id="openPassword">Change Password</button>
                     </div>
                 </div>
             </section>
@@ -110,4 +172,5 @@
     </footer>
 </body>
 <script src="./js/index.js"></script>
+
 </html>
